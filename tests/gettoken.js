@@ -15,9 +15,9 @@ magentoClient.generateAccessToken({
         password: password
     }
 }).then((response) => {
-    response.raw.json().then((json) => {
-        console.log(json);
-    });
+    console.log(response);
 });
+
+
 
 

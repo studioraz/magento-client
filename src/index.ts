@@ -56,7 +56,7 @@ export class MagentoClient {
 
         /*
         // TODO: implement a design pattern for generating access tokens
-        // @see: https://stackoverflow.com/questions/43431550/async-await-class-constructor
+        // @see: https://stackovserflow.com/questions/43431550/async-await-class-constructor
         const accessToken = this.generateAccessToken({
             postV1IntegrationAdminTokenRequest : {
                 username: opts.username,
@@ -83,9 +83,9 @@ export class MagentoClient {
     };
 
 
-    async generateAccessToken(requestParameters: PostV1IntegrationAdminTokenOperationRequest): Promise<ApiResponse<string>> {
+    async generateAccessToken(requestParameters: PostV1IntegrationAdminTokenOperationRequest): Promise<string> {
         return wrapCall('generateAccessToken', () =>
-            this.integrationAdminTokenServiceV1Api.postV1IntegrationAdminTokenRaw(requestParameters)
+            this.integrationAdminTokenServiceV1Api.postV1IntegrationAdminToken(requestParameters)
         );
     }
 

@@ -1,7 +1,14 @@
 {
   "name": "magento-client",
   "license": "MIT",
-  "keywords": [],
+  "version": "1.1.0",
+  "keywords": [
+    "magento",
+    "ecommerce",
+    "test",
+    "e2e",
+    "integration"
+  ],
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {

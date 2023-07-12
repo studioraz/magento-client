@@ -17,7 +17,7 @@
       "node"
     ],
     "paths": {
-      "mailslurp-client": ["./dist"]
+      "magento-client": ["./dist"]
     },
     "skipLibCheck": true,
     "noImplicitAny": true,

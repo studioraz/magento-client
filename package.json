@@ -6,6 +6,7 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --outDir dist/",
+    "build:watch": "tsc --outDir dist/ --watch",
     "prepublishOnly": "npm run build",
     "integration": "jest",
     "validate": "npx check-md",

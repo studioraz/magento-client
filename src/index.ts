@@ -12,8 +12,6 @@ import {
     CatalogCategoryManagementV1Api, GetV1CategoriesRequest, CatalogDataCategoryTreeInterface
 } from './generated';
 
-import { ApiMiddleware } from './ApiMiddleware';
-
 export * from './generated';
 
 /**
@@ -69,15 +67,24 @@ export class MagentoClient {
         // create credentials
         const clientConfiguration = new Configuration({
             username: opts.username,
-            password: opts.password,
-            accessToken: opts.accessToken || undefined,
-            //apiKey: opts.apiKey || undefined,
-            //middleware: [new ApiMiddleware()]
+            password: opts.password
         });
 
-        const args = [clientConfiguration, clientConfiguration.basePath, _fetch];
+        let args = [clientConfiguration, clientConfiguration.basePath, _fetch];
 
         this.integrationAdminTokenServiceV1Api = new IntegrationAdminTokenServiceV1Api(...args);
+
+        // generate access token for next api services
+        const accessToken =  this.generateAccessToken({
+            postV1IntegrationAdminTokenRequest : {
+                username: opts.username,
+                password: opts.password
+            }
+        });
+
+        // add access token to args
+        args = [args, accessToken];
+
         this.catalogCategoryManagementV1Api = new CatalogCategoryManagementV1Api(...args);
 
     };

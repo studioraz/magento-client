@@ -11718,6 +11718,7 @@ paths:
                 $ref: "#/components/schemas/error-response"
   /V1/integration/admin/token:
     post:
+      security: []
       tags:
         - integrationAdminTokenServiceV1
       description: Create access token for admin given the admin credentials.
@@ -11766,6 +11767,7 @@ paths:
                 $ref: "#/components/schemas/error-response"
   /V1/integration/customer/token:
     post:
+      security: []
       tags:
         - integrationCustomerTokenServiceV1
       description: Create access token for admin given the customer credentials.
@@ -30687,4 +30689,6 @@ components:
         - logged_in
         - store_code
 security:
-  - bearerAuth: []
+  - bearerAuth: [
+
+  ]

@@ -106,7 +106,6 @@ apis/InventorySalesApiIsProductSalableV1Api.ts
 apis/InventorySalesApiStockResolverV1Api.ts
 apis/InventorySourceSelectionApiGetSourceSelectionAlgorithmListV1Api.ts
 apis/InventorySourceSelectionApiSourceSelectionServiceV1Api.ts
-apis/PayPalBraintreeAuthV1Api.ts
 apis/QuoteBillingAddressManagementV1Api.ts
 apis/QuoteCartItemRepositoryV1Api.ts
 apis/QuoteCartManagementV1Api.ts
@@ -127,6 +126,7 @@ apis/QuoteGuestShippingMethodManagementV1Api.ts
 apis/QuotePaymentMethodManagementV1Api.ts
 apis/QuoteShipmentEstimationV1Api.ts
 apis/QuoteShippingMethodManagementV1Api.ts
+apis/SRMagentoRestApiAddonConfigManagementServiceV1Api.ts
 apis/SalesCreditmemoCommentRepositoryV1Api.ts
 apis/SalesCreditmemoManagementV1Api.ts
 apis/SalesCreditmemoRepositoryV1Api.ts
@@ -321,7 +321,6 @@ models/InventorySourceSelectionApiDataSourceSelectionAlgorithmInterface.ts
 models/InventorySourceSelectionApiDataSourceSelectionItemInterface.ts
 models/InventorySourceSelectionApiDataSourceSelectionResultInterface.ts
 models/MsrpDataProductRenderMsrpPriceInfoInterface.ts
-models/PayPalBraintreeDataAuthDataInterface.ts
 models/PaymentDataPaymentAdditionalInfoInterface.ts
 models/PostV1BundleproductsOptionsAddRequest.ts
 models/PostV1BundleproductsSkuLinksOptionIdRequest.ts
@@ -384,6 +383,8 @@ models/PostV1ProductsTierpricesinformationRequest.ts
 models/PostV1ShipmentIdCommentsRequest.ts
 models/PostV1ShipmentRequest.ts
 models/PostV1ShipmentTrackRequest.ts
+models/PostV1SrsysconfigConfigGetRequest.ts
+models/PostV1SrsysconfigConfigSetRequest.ts
 models/PostV1TaxClassesRequest.ts
 models/PutV1CartsCartIdRequest.ts
 models/PutV1CartsCartIdSelectedpaymentmethodRequest.ts

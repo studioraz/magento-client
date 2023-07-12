@@ -21,9 +21,10 @@
     },
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "strict": false
+    "strict": false,
+    "sourceMap": true
   },
   "include": [
     "src/index.ts"
-  ],
+  ]
 }

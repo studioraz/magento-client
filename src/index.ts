@@ -3,13 +3,14 @@
 import {
     Configuration,
     FetchAPI,
-    ApiResponse,
     IntegrationAdminTokenServiceV1Api,
     PostV1IntegrationAdminTokenOperationRequest,
-    CatalogCategoryListV1Api,
-    CatalogDataCategorySearchResultsInterface,
-    GetV1CategoriesListRequest,
-    CatalogCategoryManagementV1Api, GetV1CategoriesRequest, CatalogDataCategoryTreeInterface
+    CatalogCategoryManagementV1Api,
+    GetV1CategoriesRequest,
+    CatalogDataCategoryTreeInterface,
+    SRMagentoRestApiAddonConfigManagementServiceV1Api,
+    PostV1SrsysconfigConfigGetOperationRequest,
+    PostV1SrsysconfigConfigSetOperationRequest,
 } from './generated';
 
 export * from './generated';
@@ -43,6 +44,9 @@ export type Config = {
 export class MagentoClient {
     public readonly integrationAdminTokenServiceV1Api : IntegrationAdminTokenServiceV1Api;
     public readonly catalogCategoryManagementV1Api : CatalogCategoryManagementV1Api
+
+    public readonly srMagentoRestApiAddonConfigManagementServiceV1Api : SRMagentoRestApiAddonConfigManagementServiceV1Api
+
     constructor(opts: Config) {
         // check options
         if (!opts.username) {
@@ -67,26 +71,28 @@ export class MagentoClient {
         // create credentials
         const clientConfiguration = new Configuration({
             username: opts.username,
-            password: opts.password
+            password: opts.password,
+
         });
 
-        let args = [clientConfiguration, clientConfiguration.basePath, _fetch];
+        const args = [clientConfiguration, clientConfiguration.basePath, _fetch];
 
         this.integrationAdminTokenServiceV1Api = new IntegrationAdminTokenServiceV1Api(...args);
 
-        // generate access token for next api services
-        const accessToken =  this.generateAccessToken({
-            postV1IntegrationAdminTokenRequest : {
-                username: opts.username,
-                password: opts.password
-            }
+        const clientConfiguration1 = new Configuration({
+            username: opts.username,
+            password: opts.password,
+            accessToken : this.generateAccessToken({
+                postV1IntegrationAdminTokenRequest : {
+                    username: opts.username,
+                    password: opts.password
+                }
+            })
         });
 
-        // add access token to args
-        args = [args, accessToken];
-
-        this.catalogCategoryManagementV1Api = new CatalogCategoryManagementV1Api(...args);
-
+        let args1 = [clientConfiguration1, clientConfiguration1.basePath, _fetch];
+        this.catalogCategoryManagementV1Api = new CatalogCategoryManagementV1Api(...args1);
+        this.srMagentoRestApiAddonConfigManagementServiceV1Api = new SRMagentoRestApiAddonConfigManagementServiceV1Api(...args1);
     };
 
 
@@ -101,6 +107,19 @@ export class MagentoClient {
             this.catalogCategoryManagementV1Api.getV1Categories(requestParameters)
         );
     }
+
+    async getSysConfigs(requestParameters: PostV1SrsysconfigConfigGetOperationRequest): Promise<string> {
+        return wrapCall('getSysConfigs', () =>
+            this.srMagentoRestApiAddonConfigManagementServiceV1Api.postV1SrsysconfigConfigGet(requestParameters)
+        );
+    }
+
+    async setSysConfigs(requestParameters: PostV1SrsysconfigConfigSetOperationRequest): Promise<boolean> {
+        return wrapCall('setSysConfigs', () =>
+          this.srMagentoRestApiAddonConfigManagementServiceV1Api.postV1SrsysconfigConfigSet(requestParameters)
+        );
+    }
+
 }
 
 

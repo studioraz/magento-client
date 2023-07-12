@@ -162,7 +162,6 @@ export * from './InventorySourceSelectionApiDataSourceSelectionAlgorithmInterfac
 export * from './InventorySourceSelectionApiDataSourceSelectionItemInterface';
 export * from './InventorySourceSelectionApiDataSourceSelectionResultInterface';
 export * from './MsrpDataProductRenderMsrpPriceInfoInterface';
-export * from './PayPalBraintreeDataAuthDataInterface';
 export * from './PaymentDataPaymentAdditionalInfoInterface';
 export * from './PostV1BundleproductsOptionsAddRequest';
 export * from './PostV1BundleproductsSkuLinksOptionIdRequest';
@@ -225,6 +224,8 @@ export * from './PostV1ProductsTierpricesinformationRequest';
 export * from './PostV1ShipmentIdCommentsRequest';
 export * from './PostV1ShipmentRequest';
 export * from './PostV1ShipmentTrackRequest';
+export * from './PostV1SrsysconfigConfigGetRequest';
+export * from './PostV1SrsysconfigConfigSetRequest';
 export * from './PostV1TaxClassesRequest';
 export * from './PutV1CartsCartIdRequest';
 export * from './PutV1CartsCartIdSelectedpaymentmethodRequest';

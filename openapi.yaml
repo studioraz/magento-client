@@ -443,8 +443,8 @@ tags:
   - name: asynchronousOperationsOperationRepositoryV1
     description: Bulk operation item repository interface. An bulk is a group of
       queue messages. An bulk operation item is a queue message.
-  - name: payPalBraintreeAuthV1
-    description: Interface AuthInterface
+  - name: sRMagentoRestApiAddonConfigManagementServiceV1
+    description: ""
 paths:
   /V1/store/storeViews:
     get:
@@ -21268,22 +21268,113 @@ paths:
             application/xml:
               schema:
                 $ref: "#/components/schemas/error-response"
-  /V1/applepay/auth:
-    get:
+  /V1/srsysconfig/config/set:
+    post:
       tags:
-        - payPalBraintreeAuthV1
-      description: Returns details required to be able to submit a payment with apple pay.
-      operationId: GetV1ApplepayAuth
+        - sRMagentoRestApiAddonConfigManagementServiceV1
+      description: ""
+      operationId: PostV1SrsysconfigConfigSet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - systemConfig
+              properties:
+                systemConfig:
+                  type: string
+              type: object
+              xml:
+                name: request
+          application/xml:
+            schema:
+              required:
+                - systemConfig
+              properties:
+                systemConfig:
+                  type: string
+              type: object
+              xml:
+                name: request
       responses:
         "200":
           description: 200 Success.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/pay-pal-braintree-data-auth-data-interface"
+                type: boolean
             application/xml:
               schema:
-                $ref: "#/components/schemas/pay-pal-braintree-data-auth-data-interface"
+                type: boolean
+        "401":
+          description: 401 Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error-response"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/error-response"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error-response"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/error-response"
+  /V1/srsysconfig/config/get:
+    post:
+      tags:
+        - sRMagentoRestApiAddonConfigManagementServiceV1
+      description: Returns dataset of system-config values by given config paths
+      operationId: PostV1SrsysconfigConfigGet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - systemConfig
+              properties:
+                systemConfig:
+                  type: string
+                  description: set of paths (array structure) to fetch
+              type: object
+              xml:
+                name: request
+          application/xml:
+            schema:
+              required:
+                - systemConfig
+              properties:
+                systemConfig:
+                  type: string
+                  description: set of paths (array structure) to fetch
+              type: object
+              xml:
+                name: request
+      responses:
+        "200":
+          description: 200 Success.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: array/json structured dataset
+            application/xml:
+              schema:
+                type: string
+                description: array/json structured dataset
+        "401":
+          description: 401 Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error-response"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/error-response"
         default:
           description: Unexpected error
           content:
@@ -30665,30 +30756,5 @@ components:
         - items
         - search_criteria
         - total_count
-    pay-pal-braintree-data-auth-data-interface:
-      type: object
-      description: Interface AuthDataInterface
-      properties:
-        client_token:
-          type: string
-          description: Client token
-        display_name:
-          type: string
-          description: Display name
-        action_success:
-          type: string
-          description: To success page
-        logged_in:
-          type: boolean
-        store_code:
-          type: string
-          description: Current store code
-      required:
-        - display_name
-        - action_success
-        - logged_in
-        - store_code
 security:
-  - bearerAuth: [
-
-  ]
+  - bearerAuth: []

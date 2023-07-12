@@ -650,8 +650,8 @@
       "description": "Bulk operation item repository interface. An bulk is a group of queue messages. An bulk operation item is a queue message."
     },
     {
-      "name": "payPalBraintreeAuthV1",
-      "description": "Interface AuthInterface"
+      "name": "sRMagentoRestApiAddonConfigManagementServiceV1",
+      "description": ""
     }
   ],
   "paths": {
@@ -24111,13 +24111,13 @@
         }
       }
     },
-    "/V1/applepay/auth": {
-      "get": {
+    "/V1/srsysconfig/config/set": {
+      "post": {
         "tags": [
-          "payPalBraintreeAuthV1"
+          "sRMagentoRestApiAddonConfigManagementServiceV1"
         ],
-        "description": "Returns details required to be able to submit a payment with apple pay.",
-        "operationId": "GetV1ApplepayAuth",
+        "description": "",
+        "operationId": "PostV1SrsysconfigConfigSet",
         "consumes": [
           "application/json",
           "application/xml"
@@ -24126,11 +24126,96 @@
           "application/json",
           "application/xml"
         ],
+        "parameters": [
+          {
+            "name": "PostV1SrsysconfigConfigSetBody",
+            "in": "body",
+            "schema": {
+              "required": [
+                "systemConfig"
+              ],
+              "properties": {
+                "systemConfig": {
+                  "type": "string"
+                }
+              },
+              "type": "object",
+              "xml": {
+                "name": "request"
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "200 Success.",
             "schema": {
-              "$ref": "#/definitions/pay-pal-braintree-data-auth-data-interface"
+              "type": "boolean"
+            }
+          },
+          "401": {
+            "description": "401 Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error-response"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/error-response"
+            }
+          }
+        }
+      }
+    },
+    "/V1/srsysconfig/config/get": {
+      "post": {
+        "tags": [
+          "sRMagentoRestApiAddonConfigManagementServiceV1"
+        ],
+        "description": "Returns dataset of system-config values by given config paths",
+        "operationId": "PostV1SrsysconfigConfigGet",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "PostV1SrsysconfigConfigGetBody",
+            "in": "body",
+            "schema": {
+              "required": [
+                "systemConfig"
+              ],
+              "properties": {
+                "systemConfig": {
+                  "type": "string",
+                  "description": "set of paths (array structure) to fetch"
+                }
+              },
+              "type": "object",
+              "xml": {
+                "name": "request"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success.",
+            "schema": {
+              "type": "string",
+              "description": "array/json structured dataset"
+            }
+          },
+          "401": {
+            "description": "401 Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/error-response"
             }
           },
           "default": {
@@ -34847,37 +34932,6 @@
         "items",
         "search_criteria",
         "total_count"
-      ]
-    },
-    "pay-pal-braintree-data-auth-data-interface": {
-      "type": "object",
-      "description": "Interface AuthDataInterface",
-      "properties": {
-        "client_token": {
-          "type": "string",
-          "description": "Client token"
-        },
-        "display_name": {
-          "type": "string",
-          "description": "Display name"
-        },
-        "action_success": {
-          "type": "string",
-          "description": "To success page"
-        },
-        "logged_in": {
-          "type": "boolean"
-        },
-        "store_code": {
-          "type": "string",
-          "description": "Current store code"
-        }
-      },
-      "required": [
-        "display_name",
-        "action_success",
-        "logged_in",
-        "store_code"
       ]
     }
   }

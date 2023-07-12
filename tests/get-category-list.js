@@ -1,8 +1,10 @@
 const MagentoClient = require('../dist').default;
+require('dotenv').config()
 
 const magentoClient = new MagentoClient({
-    username: 'studioraz',
-    password: 'hU9uOSYXxSaaE3FGu4mo'
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    basePath: process.env.BASE_PATH
 });
 
 magentoClient.getCategories({}).then((response) => {

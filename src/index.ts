@@ -56,23 +56,17 @@ export class MagentoClient {
             throw 'admin password config is required';
         }
 
-        /*
-        // TODO: implement a design pattern for generating access tokens
-        // @see: https://stackovserflow.com/questions/43431550/async-await-class-constructor
-        const accessToken = this.generateAccessToken({
-            postV1IntegrationAdminTokenRequest : {
-                username: opts.username,
-                password: opts.password
-            }
-        });
-         */
-        const _fetch: any = opts.fetchApi || fetch;
+        if (!opts.basePath) {
+            throw 'base path config is required';
+        }
+
+            const _fetch: any = opts.fetchApi || fetch;
 
         // create credentials
         const clientConfiguration = new Configuration({
             username: opts.username,
             password: opts.password,
-
+            basePath: opts.basePath
         });
 
         const args = [clientConfiguration, clientConfiguration.basePath, _fetch];

@@ -16,29 +16,17 @@ import {
 export * from './generated';
 
 /**
- * MailSlurp config
- *
- * @remarks
- * [Obtain your API Key](https://app.mailslurp.com) in your dashboard.
+ * Magento Client config
  */
 export type Config = {
-    // obtain an apiKey at https://app.mailslurp.com
-    apiKey: string;
-
-    accessToken?: string;
     // optional attribution id (see sales)
-    attribution?: string;
-    // optional api base path
-    basePath?: string;
+    basePath: string;
     // optional fetch override
     fetchApi?: FetchAPI;
-    // optional request headers map
+
     headers?: { [key: string]: string };
-
     username: string;
-
     password: string;
-
 };
 
 export class MagentoClient {

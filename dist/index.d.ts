@@ -1,16 +1,10 @@
 import { FetchAPI, IntegrationAdminTokenServiceV1Api, PostV1IntegrationAdminTokenOperationRequest, CatalogCategoryManagementV1Api, GetV1CategoriesRequest, CatalogDataCategoryTreeInterface, SRMagentoRestApiAddonConfigManagementServiceV1Api, PostV1SrsysconfigConfigGetOperationRequest, PostV1SrsysconfigConfigSetOperationRequest } from './generated';
 export * from './generated';
 /**
- * MailSlurp config
- *
- * @remarks
- * [Obtain your API Key](https://app.mailslurp.com) in your dashboard.
+ * Magento Client config
  */
 export type Config = {
-    apiKey: string;
-    accessToken?: string;
-    attribution?: string;
-    basePath?: string;
+    basePath: string;
     fetchApi?: FetchAPI;
     headers?: {
         [key: string]: string;

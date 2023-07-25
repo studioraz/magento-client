@@ -1,7 +1,7 @@
 {
   "name": "magento-client",
   "license": "MIT",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "keywords": [
     "magento",
     "ecommerce",
@@ -23,7 +23,8 @@
     "fmt": "prettier --write '{src,test}/**/*.{ts,json,js}'",
     "readme": "node --trace-deprecation --abort-on-uncaught-exception -r ts-node/register scripts/readme.ts",
     "convert-swagger-to-openapi": "swagger2openapi  -i -y ./swagger.json -o ./openapi.yaml",
-    "generate-openapi-client": "openapi-generator generate -i ./openapi.yaml -g typescript-fetch  -o ./src/generated"
+    "generate-openapi-client": "openapi-generator generate -i ./openapi.yaml -g typescript-fetch  -o ./src/generated",
+    "test": "jest"
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
@@ -54,42 +55,6 @@
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.25",
     "typescript": "^4.9.5"
-  },
-  "jest": {
-    "roots": [
-      "<rootDir>"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/test/.*|(\\.|/))(test|spec|use)\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": "test-results"
-        }
-      ]
-    ],
-    "testTimeout": 120000,
-    "testResultsProcessor": "jest-junit",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "<rootDir>/dist/**/*.js"
-    ],
-    "coverageReporters": [
-      "text",
-      "html"
-    ]
   },
   "check-md": {
     "cwd": "./docs",

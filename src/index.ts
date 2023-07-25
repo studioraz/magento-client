@@ -11,6 +11,9 @@ import {
     SRMagentoRestApiAddonConfigManagementServiceV1Api,
     PostV1SrsysconfigConfigGetOperationRequest,
     PostV1SrsysconfigConfigSetOperationRequest,
+    CustomerAccountManagementV1Api,
+    CustomerDataCustomerInterface,
+    PostV1CustomersOperationRequest,
 } from './generated';
 
 export * from './generated';
@@ -34,6 +37,8 @@ export class MagentoClient {
     public readonly catalogCategoryManagementV1Api : CatalogCategoryManagementV1Api
 
     public readonly srMagentoRestApiAddonConfigManagementServiceV1Api : SRMagentoRestApiAddonConfigManagementServiceV1Api
+
+    public readonly customerAccountManagementV1Api : CustomerAccountManagementV1Api;
 
     constructor(opts: Config) {
         // check options
@@ -75,6 +80,7 @@ export class MagentoClient {
         let args1 = [clientConfiguration1, clientConfiguration1.basePath, _fetch];
         this.catalogCategoryManagementV1Api = new CatalogCategoryManagementV1Api(...args1);
         this.srMagentoRestApiAddonConfigManagementServiceV1Api = new SRMagentoRestApiAddonConfigManagementServiceV1Api(...args1);
+        this.customerAccountManagementV1Api = new CustomerAccountManagementV1Api(...args1);
     };
 
 
@@ -102,8 +108,12 @@ export class MagentoClient {
         );
     }
 
+    async createCustomerAccount(requestParameters: PostV1CustomersOperationRequest): Promise<CustomerDataCustomerInterface> {
+        return wrapCall('createCustomerAccount', () =>
+            this.customerAccountManagementV1Api.postV1Customers(requestParameters)
+        );
+    }
 }
-
 
 // helper
 async function wrapCall<T>(tag: String, fn: () => Promise<T>): Promise<T> {

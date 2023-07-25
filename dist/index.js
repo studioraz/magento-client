@@ -113,6 +113,7 @@ var MagentoClient = /** @class */ (function () {
         var args1 = [clientConfiguration1, clientConfiguration1.basePath, _fetch];
         this.catalogCategoryManagementV1Api = new (generated_1.CatalogCategoryManagementV1Api.bind.apply(generated_1.CatalogCategoryManagementV1Api, __spreadArray([void 0], __read(args1), false)))();
         this.srMagentoRestApiAddonConfigManagementServiceV1Api = new (generated_1.SRMagentoRestApiAddonConfigManagementServiceV1Api.bind.apply(generated_1.SRMagentoRestApiAddonConfigManagementServiceV1Api, __spreadArray([void 0], __read(args1), false)))();
+        this.customerAccountManagementV1Api = new (generated_1.CustomerAccountManagementV1Api.bind.apply(generated_1.CustomerAccountManagementV1Api, __spreadArray([void 0], __read(args1), false)))();
     }
     ;
     MagentoClient.prototype.generateAccessToken = function (requestParameters) {
@@ -151,6 +152,16 @@ var MagentoClient = /** @class */ (function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, wrapCall('setSysConfigs', function () {
                         return _this.srMagentoRestApiAddonConfigManagementServiceV1Api.postV1SrsysconfigConfigSet(requestParameters);
+                    })];
+            });
+        });
+    };
+    MagentoClient.prototype.createCustomerAccount = function (requestParameters) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, wrapCall('createCustomerAccount', function () {
+                        return _this.customerAccountManagementV1Api.postV1Customers(requestParameters);
                     })];
             });
         });

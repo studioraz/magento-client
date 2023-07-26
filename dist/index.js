@@ -100,6 +100,7 @@ var MagentoClient = /** @class */ (function () {
         });
         var args = [clientConfiguration, clientConfiguration.basePath, _fetch];
         this.integrationAdminTokenServiceV1Api = new (generated_1.IntegrationAdminTokenServiceV1Api.bind.apply(generated_1.IntegrationAdminTokenServiceV1Api, __spreadArray([void 0], __read(args), false)))();
+        this.integrationCustomerTokenServiceV1Api = new (generated_1.IntegrationCustomerTokenServiceV1Api.bind.apply(generated_1.IntegrationCustomerTokenServiceV1Api, __spreadArray([void 0], __read(args), false)))();
         var clientConfiguration1 = new generated_1.Configuration({
             username: opts.username,
             password: opts.password,
@@ -122,6 +123,16 @@ var MagentoClient = /** @class */ (function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, wrapCall('generateAccessToken', function () {
                         return _this.integrationAdminTokenServiceV1Api.postV1IntegrationAdminToken(requestParameters);
+                    })];
+            });
+        });
+    };
+    MagentoClient.prototype.generateCustomerToken = function (requestParameters) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, wrapCall('generateCustomerToken', function () {
+                        return _this.integrationCustomerTokenServiceV1Api.postV1IntegrationCustomerToken(requestParameters);
                     })];
             });
         });

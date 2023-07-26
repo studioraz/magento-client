@@ -4,6 +4,7 @@ import {
     Configuration,
     FetchAPI,
     IntegrationAdminTokenServiceV1Api,
+    IntegrationCustomerTokenServiceV1Api,
     PostV1IntegrationAdminTokenOperationRequest,
     CatalogCategoryManagementV1Api,
     GetV1CategoriesRequest,
@@ -13,7 +14,7 @@ import {
     PostV1SrsysconfigConfigSetOperationRequest,
     CustomerAccountManagementV1Api,
     CustomerDataCustomerInterface,
-    PostV1CustomersOperationRequest,
+    PostV1CustomersOperationRequest, PostV1IntegrationCustomerTokenRequest,
 } from './generated';
 
 export * from './generated';
@@ -40,6 +41,8 @@ export class MagentoClient {
 
     public readonly customerAccountManagementV1Api : CustomerAccountManagementV1Api;
 
+    public readonly integrationCustomerTokenServiceV1Api : IntegrationCustomerTokenServiceV1Api;
+
     constructor(opts: Config) {
         // check options
         if (!opts.username) {
@@ -65,6 +68,7 @@ export class MagentoClient {
         const args = [clientConfiguration, clientConfiguration.basePath, _fetch];
 
         this.integrationAdminTokenServiceV1Api = new IntegrationAdminTokenServiceV1Api(...args);
+        this.integrationCustomerTokenServiceV1Api = new IntegrationCustomerTokenServiceV1Api(...args);
 
         const clientConfiguration1 = new Configuration({
             username: opts.username,
@@ -81,12 +85,19 @@ export class MagentoClient {
         this.catalogCategoryManagementV1Api = new CatalogCategoryManagementV1Api(...args1);
         this.srMagentoRestApiAddonConfigManagementServiceV1Api = new SRMagentoRestApiAddonConfigManagementServiceV1Api(...args1);
         this.customerAccountManagementV1Api = new CustomerAccountManagementV1Api(...args1);
+
     };
 
 
     async generateAccessToken(requestParameters: PostV1IntegrationAdminTokenOperationRequest): Promise<string> {
         return wrapCall('generateAccessToken', () =>
             this.integrationAdminTokenServiceV1Api.postV1IntegrationAdminToken(requestParameters)
+        );
+    }
+
+    async generateCustomerToken(requestParameters: PostV1IntegrationCustomerTokenRequest): Promise<string> {
+        return wrapCall('generateCustomerToken', () =>
+          this.integrationCustomerTokenServiceV1Api.postV1IntegrationCustomerToken(requestParameters)
         );
     }
 
@@ -113,6 +124,7 @@ export class MagentoClient {
             this.customerAccountManagementV1Api.postV1Customers(requestParameters)
         );
     }
+
 }
 
 // helper

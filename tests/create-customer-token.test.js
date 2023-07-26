@@ -1,3 +1,5 @@
+const { string } = require('fast-glob/out/utils');
+const { QuoteCartManagementV1Api } = require('../src');
 const MagentoClient = require('../dist').default;
 require('dotenv').config();
 
@@ -8,7 +10,7 @@ const magentoClient = new MagentoClient({
 });
 
 describe('Customer Account', () => {
-  test('can create a customer account', () => {
+  test('can create a customer account', async() => {
 
     // create a random customer data
     const random = Math.floor(Math.random() * 9000) + 1000;
@@ -35,12 +37,31 @@ describe('Customer Account', () => {
       "password": "qwaszx1234$"
     };
 
-    magentoClient.createCustomerAccount({
-      postV1CustomersRequest : customerDataRequest
-    }).then((response) => {
-      expect(response.id).toBe('string');
-      expect(response.email).toBe('ssss');
+    const customer = await magentoClient.createCustomerAccount({
+        postV1CustomersRequest : customerDataRequest
     });
+
+    expect(customer).toHaveProperty('id');
+
+
+    const token = await magentoClient.generateCustomerToken({
+      postV1IntegrationAdminTokenRequest: {
+        "username": customerDataRequest.customer.email,
+        "password": customerDataRequest.password
+      }
+    });
+
+    expect(typeof token).toBe('string');
+
+
+    magentoClient.QuoteCartManagementV1Api = new QuoteCartManagementV1Api();
+
+    // TODO: create a quote
+
+    // TODO: add product to quote
+
+
+
   });
 });
 

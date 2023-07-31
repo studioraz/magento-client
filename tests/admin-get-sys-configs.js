@@ -1,9 +1,9 @@
-const MagentoClient = require('../dist').default;
+const MagentoClient = require('../dist').MagentoAdminClient
 require('dotenv').config()
 
 const magentoClient = new MagentoClient({
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD,
+    username: process.env.ADMIN_USERNAME,
+    password: process.env.ADMIN_PASSWORD,
     basePath: process.env.BASE_PATH
 });
 

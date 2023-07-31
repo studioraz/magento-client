@@ -1,4 +1,4 @@
-const MagentoClient = require('../dist').default;
+const MagentoClient = require('../dist').MagentoAdminClient;
 require('dotenv').config()
 
 const magentoClient = new MagentoClient({
